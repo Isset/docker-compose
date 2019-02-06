@@ -25,6 +25,9 @@
       register: docker_compose
       ignore_errors: True
 
+    - debug:
+        var: docker_compose
+
     - assert:
         that:
-          - docker_compose.failed == True
+          - docker_compose.failed
