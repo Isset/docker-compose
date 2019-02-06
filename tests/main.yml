@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  become: yes
+  roles:
+    - isset.docker-compose
+
+  tasks:
+    - command: docker-compose --version
+      register: docker_compose
+
+    - debug:
+        var: docker_compose
+
+    - assert:
+        that:
+          - '"no packages found matching" not in dpkg.stdout'
+          - '"ii" in dpkg.stdout'
+          - my_file.stat.exists
