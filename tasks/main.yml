@@ -16,7 +16,7 @@
 
     - name: obtain docker-compose file
       get_url:
-        url: "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-{{ isset_docker_compose_os_name.stdout }}-{{ isset_docker_compose_os_architecture.stdout }}"
+        url: "{{ isset_docker_compose_url }}-{{ isset_docker_compose_os_name.stdout }}-{{ isset_docker_compose_os_architecture.stdout }}"
         dest: "{{ isset_docker_compose_path }}"
         mode: 0755
 
