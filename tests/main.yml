@@ -19,6 +19,8 @@
   become: yes
   roles:
     - isset.docker-compose
+      vars:
+        isset_docker_compose_state: absent
 
   tasks:
     - command: docker-compose --version
