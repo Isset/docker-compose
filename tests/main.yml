@@ -18,7 +18,7 @@
 - hosts: localhost
   become: yes
   roles:
-    - isset.docker-compose
+    - role: isset.docker-compose
       vars:
         isset_docker_compose_state: absent
 
