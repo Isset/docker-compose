@@ -4,8 +4,8 @@
     path: "{{ isset_docker_compose_path }}"
   register: isset_docker_compose_exists
 
-# Addition block
-- block:
+- name: install docker-compose
+  block:
     - name: get operating system name
       command: uname -s
       register: isset_docker_compose_os_name
@@ -24,8 +24,8 @@
     - isset_docker_compose_exists.stat.exists == False
     - isset_docker_compose_state == "present"
 
-# Removal block
-- block:
+- name: remove docker-compose
+  block:
     - name: remove docker-compose file
       file:
         path: "{{ isset_docker_compose_path }}"

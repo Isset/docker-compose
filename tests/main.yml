@@ -13,6 +13,18 @@
 
     - assert:
         that:
-          - '"no packages found matching" not in dpkg.stdout'
-          - '"ii" in dpkg.stdout'
-          - my_file.stat.exists
+          - '"docker-compose version" in docker_compose.stdout'
+
+- hosts: localhost
+  become: yes
+  roles:
+    - isset.docker-compose
+
+  tasks:
+    - command: docker-compose --version
+      register: docker_compose
+      ignore_errors: True
+
+    - assert:
+        that:
+          - docker_compose.failed == True
