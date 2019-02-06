@@ -6,19 +6,19 @@
 
 # Addition block
 - block:
-  - name: get operating system name
-    command: uname -s
-    register: isset_docker_compose_os_name
+    - name: get operating system name
+      command: uname -s
+      register: isset_docker_compose_os_name
 
-  - name: get machine architecture
-    command: uname -m
-    register: isset_docker_compose_os_architecture
+    - name: get machine architecture
+      command: uname -m
+      register: isset_docker_compose_os_architecture
 
-  - name: obtain docker-compose file
-    get_url:
-      url: "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-{{ isset_docker_compose_os_name.stdout }}-{{ isset_docker_compose_os_architecture.stdout }}"
-      dest: "{{ isset_docker_compose_path }}"
-      mode: 0755
+    - name: obtain docker-compose file
+      get_url:
+        url: "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-{{ isset_docker_compose_os_name.stdout }}-{{ isset_docker_compose_os_architecture.stdout }}"
+        dest: "{{ isset_docker_compose_path }}"
+        mode: 0755
 
   when:
     - isset_docker_compose_exists.stat.exists == False
@@ -26,6 +26,11 @@
 
 # Removal block
 - block:
+    - name: remove docker-compose file
+      file:
+        path: "{{ isset_docker_compose_path }}"
+        state: absent
+
   when:
     - isset_docker_compose_exists.stat.exists
     - isset_docker_compose_state is absent
