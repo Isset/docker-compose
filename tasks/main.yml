@@ -22,7 +22,7 @@
 
   when:
     - isset_docker_compose_exists.stat.exists == False
-    - isset_docker_compose_state is present
+    - isset_docker_compose_state == "present"
 
 # Removal block
 - block:
@@ -33,4 +33,4 @@
 
   when:
     - isset_docker_compose_exists.stat.exists
-    - isset_docker_compose_state is absent
+    - isset_docker_compose_state == "absent"
