@@ -7,6 +7,7 @@
   tasks:
     - command: docker-compose --version
       register: docker_compose
+      changed_when: False
 
     - debug:
         var: docker_compose
@@ -27,9 +28,6 @@
       register: docker_compose
       ignore_errors: True
       changed_when: False
-
-    - debug:
-        var: docker_compose
 
     - assert:
         that:
