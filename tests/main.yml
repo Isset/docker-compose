@@ -26,6 +26,7 @@
     - command: docker-compose --version
       register: docker_compose
       ignore_errors: True
+      changed_when: False
 
     - debug:
         var: docker_compose

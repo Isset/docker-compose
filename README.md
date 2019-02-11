@@ -1,7 +1,7 @@
 isset.docker-compose [![pipeline status](https://gitlab.isset.nl/operations/isset.docker-compose/badges/master/pipeline.svg)](https://gitlab.isset.nl/operations/isset.docker-compose/commits/master)
 =========
 
-_Installs docker-compose.
+_Installs docker-compose._
 
 Requirements
 ------------
